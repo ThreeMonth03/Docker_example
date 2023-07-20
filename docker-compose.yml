@@ -1,0 +1,25 @@
+version: "3"
+services:
+  Jupyter:
+    build: ./jupyter
+    image: docker/threemonth
+    container_name: jupyterthreemonth
+    ports: 
+    - "8323:8323"
+    volumes:
+    - ./:/workspace 
+    restart: unless-stopped
+    command: jupyter notebook --no-browser --ip=0.0.0.0 --port=8323 --allow-root --NotebookApp.token='' --NotebookApp.password=''
+
+
+  Tensorboard:
+    build: ./tensorboard
+    image: docker/threemonth2
+    container_name: tensorboardthreemonth
+    ports: 
+    - "8324:8324"
+    depends_on:
+    - Jupyter
+    volumes:
+    - ./:/workspace 
+    restart: unless-stopped
