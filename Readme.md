@@ -49,7 +49,7 @@ categories:
 ```jupyter notebook --no-browser --ip=0.0.0.0 --port=8080 --allow-root --NotebookApp.token='' --NotebookApp.password='' ```   
 這句指令的話   
 ```--no-browser```就能避免server打不開瀏覽器的情況。   
-```--ip=0.0.0.0```的用法能讓任何ip地址使用Jupyter服務。
+```--ip=0.0.0.0```的用法能讓任何ip地址使用Jupyter服務。   
 ```--port```的話就是寫container_port。   
 ```--allow-root```是解決Running as root is not recommended的錯誤，至於發生原因不清楚。   
 然後如果將jupyter開在背景執行，可能就要另外驗證token和密碼，透過```--NotebookApp.token='' --NotebookApp.password='' ```可以省掉驗證。
@@ -108,7 +108,7 @@ CMD就是放container開啟後，默認的command，這個檔案的話就是```"
 ```docker run [opotional -it] [(optional) --name [container_name]]  [(optional) -p [server_port]:[container_port]] [(optional) -v [absolutely/relative path]:[container path]] [(optional) --gpus all] [image_name] [(optional) command]```   
 其中optional的部分就是可打可不打，看起來很複雜，就慢慢解釋:
 1. -it: -it是由-i -t組成，-i代表讓container的標準輸入保持打開，-t代表讓docker分配一個偽終端(pseudo-tty)並綁定到標準輸入上。簡言之，-it通常搭配指令bash，用來開啟一個terminal操作container。
-2. --name: 這個後面加上container的名字，強烈建議要加，不然很難管理container。
+2. --name: 這個後面加上container的名字，強烈建議要加，不然很難管理container。    
 3. -p: 這個是local forwarding會用到的，前面接local forwarding的server_port，後面接container_port，為了好管理，大家常取同樣的數字。
 4. -v: 這個用來mount，前面加上想被mount的實際資料夾，後面加上container內mount的目的地。
 5. --gpus: 讓docker環境能用上gpu，後面加all就是全用。
